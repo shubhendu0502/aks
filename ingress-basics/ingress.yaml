@@ -14,5 +14,4 @@ metadata:
                 service:
                   name: app1-nginx-clusterip-service
                   port:
-                    name:
                     number: 80
