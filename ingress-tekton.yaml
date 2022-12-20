@@ -1,9 +1,10 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ingress-cpr
+  name: ingress-ssl
   annotations:
-    kubernetes.io/ingress.class: "nginx"  
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: letsencrypt    
 spec:
   rules:
     - host: app1.frozenbread.online
@@ -26,39 +27,23 @@ spec:
                 name: app2-nginx-clusterip-service
                 port: 
                   number: 80
-    - host: app3.frozenbread.online
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: usermgmt-webapp-service
-                port: 
-                  number: 80
     - host: tekton.frozenbread.online
       http:
         paths:
-          - path: /
+          - path: /hooks
             pathType: Prefix
             backend:
               service:
                 name: el-github-pr
                 port: 
-                  number: 8080
+                  number: 8080                         
   tls:
   - hosts:
     - app1.frozenbread.online
     secretName: app1-frozenbread-secret           
   - hosts:
     - app2.frozenbread.online
-    secretName: app2-frozenbread-secret  
-  - hosts:
-    - app3.frozenbread.online
-    secretName: app3-frozenbread-secret 
+    secretName: app2-frozenbread-secret
   - hosts:
     - tekton.frozenbread.online
-    secretName: tekton-frozenbread-secret 
-
-
-
+    secretName: tekton-frozenbread-secret
