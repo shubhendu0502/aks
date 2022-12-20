@@ -45,4 +45,4 @@ spec:
     secretName: app2-frozenbread-secret  
   - hosts:
     - app3.frozenbread.online
-    secretName: app2-frozenbread-secret 
+    secretName: app3-frozenbread-secret 
