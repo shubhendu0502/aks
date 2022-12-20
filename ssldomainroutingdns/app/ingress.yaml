@@ -36,3 +36,13 @@ spec:
                 name: usermgmt-webapp-service
                 port: 
                   number: 80
+    tls:
+  - hosts:
+    - app1.frozenbread.online
+    secretName: app1-frozenbread-secret           
+  - hosts:
+    - app2.frozenbread.online
+    secretName: app2-frozenbread-secret  
+  - hosts:
+    - app3.frozenbread.online
+    secretName: app2-frozenbread-secret 
